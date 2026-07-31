@@ -5,6 +5,7 @@ import { useState } from "react";
 import { LessonUploader } from "@/components/LessonUploader";
 import { QuizPreview } from "@/components/QuizPreview";
 import type { GeneratedQuiz, LessonQuizRequest, QuizRequest } from "@/src/lib/types";
+import { downloadQuizPdf } from "@/src/lib/downloadQuizPdf";
 
 type Mode = "topic" | "lesson";
 
@@ -140,6 +141,24 @@ export default function TrialPage() {
         {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
 
         {quiz && <QuizPreview quiz={quiz} />}
+
+        {quiz && (
+            <div className="mt-4 grid grid-cols-2 gap-3">
+                <button
+                onClick={() => downloadQuizPdf(quiz, "student")}
+                className="rounded-xl border border-indigo-500/30 bg-black/20 px-6 py-3 font-semibold text-white transition hover:border-indigo-500/60"
+                >
+                Download Quiz (Student Copy)
+                </button>
+                <button
+                onClick={() => downloadQuizPdf(quiz, "answerKey")}
+                className="rounded-xl border border-indigo-500/30 bg-black/20 px-6 py-3 font-semibold text-white transition hover:border-indigo-500/60"
+                >
+                Download Answer Key
+                </button>
+            </div>
+            )}
+
       </div>
     </main>
   );
