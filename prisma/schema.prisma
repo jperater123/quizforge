@@ -14,9 +14,10 @@ datasource db {
 
 model User {
   id         String   @id @default(cuid())
-  authId     String   @unique
   email      String   @unique
   name       String?
+  avatar_url String?
+  plan       String @default("free")
   createdAt  DateTime @default(now())
 
   quizzes    Quiz[]
@@ -44,4 +45,11 @@ model Question {
   quizId      String
 
   quiz Quiz @relation(fields: [quizId], references: [id])
+}
+
+model GuestTrial {
+  id               String   @id @default(cuid())
+  remainingTrials  Int      @default(3)
+  createdAt        DateTime @default(now())
+  lastUsed         DateTime @updatedAt
 }

@@ -21,9 +21,6 @@ export default function Features() {
     <section className="border-t border-zinc-900 bg-zinc-950 py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-indigo-400">
-            Features
-          </span>
 
           <h2 className="mt-4 text-4xl font-bold">
             Everything You Need to Build Quizzes

@@ -53,7 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Quiz: 'Quiz',
-  Question: 'Question'
+  Question: 'Question',
+  GuestTrial: 'GuestTrial'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -74,9 +75,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  authId: 'authId',
   email: 'email',
   name: 'name',
+  avatar_url: 'avatar_url',
+  plan: 'plan',
   createdAt: 'createdAt'
 } as const
 
@@ -106,6 +108,16 @@ export const QuestionScalarFieldEnum = {
 } as const
 
 export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
+
+
+export const GuestTrialScalarFieldEnum = {
+  id: 'id',
+  remainingTrials: 'remainingTrials',
+  createdAt: 'createdAt',
+  lastUsed: 'lastUsed'
+} as const
+
+export type GuestTrialScalarFieldEnum = (typeof GuestTrialScalarFieldEnum)[keyof typeof GuestTrialScalarFieldEnum]
 
 
 export const SortOrder = {

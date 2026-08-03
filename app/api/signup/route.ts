@@ -5,9 +5,11 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const { email, password } = await request.json();
 
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/login/callback`,
+    }
   });
 
   if (error) {
@@ -16,23 +18,5 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
-
-  if (!data.user) {
-    return NextResponse.json(
-      { error: "User creation failed" },
-      { status: 500 }
-    );
-  }
-
-  const user = await prisma.user.create({
-    data: {
-      authId: data.user.id,
-      email: data.user.email!,
-    },
-  });
-
-  return NextResponse.json({
-    message: "User signed up successfully!",
-    user: data.user,
-  });
+  console.log("Supabase sign-in data:", data); // Debugging line to check the response from Supabase
 }

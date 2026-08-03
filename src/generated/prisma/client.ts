@@ -56,3 +56,8 @@ export type Quiz = Prisma.QuizModel
  * 
  */
 export type Question = Prisma.QuestionModel
+/**
+ * Model GuestTrial
+ * 
+ */
+export type GuestTrial = Prisma.GuestTrialModel

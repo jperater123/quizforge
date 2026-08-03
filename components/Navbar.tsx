@@ -9,15 +9,15 @@ export default function Navbar() {
         </h1>
 
         <nav className="hidden gap-8 text-sm text-zinc-300 md:flex">
-          <a href="#" className="hover:text-white">
-            Features
+          <a href="/trial" className="hover:text-white">
+            Try Free
           </a>
 
-          <a href="#" className="hover:text-white">
+          <a href="/pricing" className="hover:text-white">
             Pricing
           </a>
 
-          <a href="#" className="hover:text-white">
+          <a href="/login" className="hover:text-white">
             Login
           </a>
         </nav>

@@ -399,7 +399,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   Quiz: 'Quiz',
-  Question: 'Question'
+  Question: 'Question',
+  GuestTrial: 'GuestTrial'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "quiz" | "question"
+    modelProps: "user" | "quiz" | "question" | "guestTrial"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -641,6 +642,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    GuestTrial: {
+      payload: Prisma.$GuestTrialPayload<ExtArgs>
+      fields: Prisma.GuestTrialFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GuestTrialFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GuestTrialFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload>
+        }
+        findFirst: {
+          args: Prisma.GuestTrialFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GuestTrialFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload>
+        }
+        findMany: {
+          args: Prisma.GuestTrialFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload>[]
+        }
+        create: {
+          args: Prisma.GuestTrialCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload>
+        }
+        createMany: {
+          args: Prisma.GuestTrialCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GuestTrialCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload>[]
+        }
+        delete: {
+          args: Prisma.GuestTrialDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload>
+        }
+        update: {
+          args: Prisma.GuestTrialUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload>
+        }
+        deleteMany: {
+          args: Prisma.GuestTrialDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GuestTrialUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GuestTrialUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload>[]
+        }
+        upsert: {
+          args: Prisma.GuestTrialUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuestTrialPayload>
+        }
+        aggregate: {
+          args: Prisma.GuestTrialAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGuestTrial>
+        }
+        groupBy: {
+          args: Prisma.GuestTrialGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuestTrialGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GuestTrialCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuestTrialCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -682,9 +757,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  authId: 'authId',
   email: 'email',
   name: 'name',
+  avatar_url: 'avatar_url',
+  plan: 'plan',
   createdAt: 'createdAt'
 } as const
 
@@ -714,6 +790,16 @@ export const QuestionScalarFieldEnum = {
 } as const
 
 export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
+
+
+export const GuestTrialScalarFieldEnum = {
+  id: 'id',
+  remainingTrials: 'remainingTrials',
+  createdAt: 'createdAt',
+  lastUsed: 'lastUsed'
+} as const
+
+export type GuestTrialScalarFieldEnum = (typeof GuestTrialScalarFieldEnum)[keyof typeof GuestTrialScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -815,6 +901,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -971,6 +1071,7 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   quiz?: Prisma.QuizOmit
   question?: Prisma.QuestionOmit
+  guestTrial?: Prisma.GuestTrialOmit
 }
 
 /* Types for Logging */
